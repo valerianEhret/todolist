@@ -17,8 +17,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { AppRootStateType } from './store'
 import { initializeAppTC, RequestStatusType } from './app-reducer'
 import { Login } from "../features/login/Login";
-import { BrowserRouter, Redirect, Route, Switch } from 'react-router-dom'
-import { loginTC, logoutTC } from "../features/login/authReducer";
+import {  Redirect, Route, Switch } from 'react-router-dom'
+import { logoutTC } from "../features/login/authReducer";
 
 type PropsType = {
     demo?: boolean
@@ -62,9 +62,10 @@ function App({ demo = false }: PropsType) {
             <Container fixed>
                 <Switch>
                     <Route exact path={'/'} render={() => <TodolistsList demo={demo} />} />
+                    <Route path={'/todolist'} render={() => <TodolistsList demo={demo} />} />
                     <Route path={'/login'} render={() => <Login />} />
                     <Route path={'/404'} render={() => <div style={{ 'fontSize': '60px' }}>404: PAGE NOT FOUND</div>} />
-                    {/*<Redirect from={'*'} to={'/404'} />*/}
+                    <Redirect from={'*'} to={'/404'} />
                 </Switch>
             </Container>
         </div>
